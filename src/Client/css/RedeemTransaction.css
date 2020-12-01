@@ -1,0 +1,51 @@
+.redeem-form{
+    margin-top: 30px;
+    margin-left: 30%;
+    width: 60%;
+    align-content: center;
+}
+
+.redeem-form p{
+    margin: 5px 0px 0px 10px;
+    font-size: 10px;
+    color: rgba(255, 0, 0, 0.782);
+}
+
+.token-label{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 35px;
+    display: flex;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.64);
+}
+
+.token-input{
+    margin-top: 10px;
+    width: 70%;
+    line-height: 30px;
+    display: flex;
+    padding-left: 10px;
+    border: 1px solid #0000005d;  
+    box-sizing: border-box;
+    border-radius: 5px;
+
+}
+
+.redeem{
+
+    margin-top: 30px;
+    width: 70%;
+    background: #3B4D68;
+    border-radius: 5px;
+    border: 0.5px #0000005d;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 35px;
+    align-items: center;
+    text-align: center;
+
+    color: #FEF8F8;
+}

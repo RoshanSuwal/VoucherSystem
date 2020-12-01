@@ -1,0 +1,39 @@
+/* voucher item*/
+
+.userlist-item-container {
+    width: fit-content;
+    background-color:white;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 3px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border: 0.2px solid rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    
+}
+
+.userlist-item-container label{
+    border-right: 0.5px solid rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    padding: 5px 10px 5px 10px ;
+    font-size: 12px;
+    font-weight: 350;
+    text-align: center;
+}
+.userlist-item-container label button{
+    margin: 3px 3px 3px 3px;
+    padding: 1px;
+    width: 90%;
+    background:  rgba(0, 0, 0, 0.713);
+    border: 0.4px solid  rgba(0, 0, 0, 0.2);
+    border-radius: 1px;
+    color: white;
+    font-size: 12px;
+}
+
+
+.userlist-item-container:hover{
+    background: rgba(52, 55, 49, 0.583);
+    color: cornsilk;
+}

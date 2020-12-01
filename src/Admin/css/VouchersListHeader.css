@@ -1,0 +1,23 @@
+/* voucher item*/
+
+.voucherlist-container {
+    width: fit-content;
+    background-color:rgba(2, 2, 2, 0.8);
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 20px;
+    margin-right: 20px;
+    border: 0.2px solid rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    
+}
+
+.voucherlist-container label{
+    border-right: 0.5px solid rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    padding: 5px 10px 5px 10px ;
+    font-size: 12px;
+    font-weight: normal;
+    text-align: center;
+}
