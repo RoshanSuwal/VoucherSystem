@@ -21,7 +21,7 @@ export default function Users(props) {
             </div>
             <div>
                 {props.users.map((user)=>(
-                    <User key={user.uuid} user={user}/>
+                    <User key={user.uuid} user={user} usedVouchers={props.usedVouchers}/>
                 ))}
             </div>
             <Pagination 

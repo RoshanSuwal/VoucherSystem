@@ -16,7 +16,7 @@ export default function Voucher(props) {
             </label>
             <label style={{width:"150px"}}>{startingTimeStamp}</label>
             <label style={{width:"150px"}}>{endingTimeStamp}</label>
-            <label style={{width:"250px",fontSize:"10px"}}>{usedBy}</label>
+            <label style={{width:"250px"}}>{usedBy}</label>
         </div>
     )
 }

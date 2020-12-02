@@ -8,9 +8,8 @@ export default function UserListHeader() {
             <label style={{width:"300px"}}>USER NAME</label>
             <label style={{width:"150px"}}>AMOUNT</label>
             <label style={{width:"150px"}}>TRANSACTION DISABLED</label>
-            {
-                //<label style={{width:"150px"}}>REDEEMED VOUCHERS</label>
-            }
+            <label style={{width:"150px"}}>REDEEMED VOUCHERS</label>
+            
         </div>
     )
 }

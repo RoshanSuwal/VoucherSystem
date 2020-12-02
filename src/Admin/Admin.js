@@ -15,7 +15,8 @@ export default class Admin extends Component {
     constructor(props){
         super(props);
 
-        this.state={
+        this.state={ 
+            searchtext:"",
             voucherPagination:{
                 page:1,
                 pageSize:20,
@@ -64,7 +65,7 @@ export default class Admin extends Component {
             ]
         }
         this.getVouchers(1,20);
-        this.getUsers(1,20);
+        this.getUsers(1,20,"");
     }
 
     handleCreateVoucher=(number,amount)=>{
@@ -79,34 +80,18 @@ export default class Admin extends Component {
         )
     }
 
-    handleVoucherPagination=(page,pageSize)=>{
-        console.log("Pagination",page,pageSize)
-        this.getVouchers(page,pageSize)
+    handleVoucherPagination=(page,pageSize,search)=>{
+        console.log("Pagination",page,pageSize,search)
+        this.getVouchers(page,pageSize,search)
 
     }
 
-    getAllVouchers=()=>{
-        console.log("all vouchers")
-        AdminService.getAllVouchers().then(
-            (response)=>{
-                if (response.status===200){
-                    this.setState(
-                        {
-                            voucherPagination:this.state.voucherPagination,
-                            users:this.state.users,
-                            vouchers:response.data
-                        }
-                    )
-                }
-            }
-        )
-    }
-
-   getVouchers=async (page,pageSize)=>{
-        await AdminService.getVouchers(page,pageSize).then(
+    getVouchers=async (page,pageSize,search)=>{
+        await AdminService.searchVouchers(page,pageSize,search).then(
             (resp)=>{
-                console.log(resp.data)
+                console.log("search",search,resp.data)
                 this.setState({
+                    searchtext:search,
                     voucherPagination:{
                         page:page,
                         pageSize:pageSize,
@@ -116,6 +101,9 @@ export default class Admin extends Component {
                     users:this.state.users,
                     vouchers:resp.data.vouchers
                 })
+
+                console.log("get vouchers")
+                console.log(this.state)
             }
         )
     }
@@ -131,6 +119,7 @@ export default class Admin extends Component {
                 console.log("users",response.data)
 
                 this.setState({
+                    searchtext:this.state.searchtext,
                     userPagination:{
                         page:page,
                         pageSize:pageSize,
@@ -151,14 +140,14 @@ export default class Admin extends Component {
         return (
             <Router>
                 <div>
-                    <Header />
+                    <Header/>
 
                     <Route path="/admin/users"  render={(props)=>(
-                        <Users users={this.state.users} userPagination={this.state.userPagination} handleUserPagination={this.handleUserPagination}/>
+                        <Users users={this.state.users} userPagination={this.state.userPagination} handleUserPagination={this.handleUserPagination} usedVouchers={this.handleVoucherPagination}/>
                     )}/>
                     
                     <Route path="/admin/vouchers" render={(props)=>(
-                        <Vouchers voucherPagination={this.state.voucherPagination} handleVoucherPagination={this.handleVoucherPagination} handleCreateVoucher={this.handleCreateVoucher} vouchers={this.state.vouchers}/>
+                        <Vouchers searchtext={this.state.searchtext} voucherPagination={this.state.voucherPagination} handleVoucherPagination={this.handleVoucherPagination} handleCreateVoucher={this.handleCreateVoucher} vouchers={this.state.vouchers}/>
                     )}/>
                     
                 </div>

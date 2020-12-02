@@ -28,6 +28,17 @@ const getVouchers=(page,pageSize)=>{
     )
 }
 
+const searchVouchers=(page,pageSize,search)=>{
+    return Axios.get(ADMIN_API+"vouchers/",
+                    {
+                        headers:{"Authorization":"Bearer "+localStorage.getItem("token")},
+                        params:{"page":page,"pageSize":pageSize,"search":search}
+                    }
+    )
+}
+
+
+
 const getUsers=(page,pageSize)=>{
     return Axios.get(ADMIN_API+"users/",
                     {
@@ -43,5 +54,6 @@ export default {
     createVoucher,
     getAllVouchers,
     getVouchers,
+    searchVouchers,
     getUsers
 }

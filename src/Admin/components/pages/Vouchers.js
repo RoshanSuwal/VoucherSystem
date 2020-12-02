@@ -2,48 +2,78 @@ import React from 'react'
 import Voucher from '../Voucher'
 import "../../css/Vouchers.css"
 import VouchersListHeader from '../VouchersListHeader';
-import { Modal, Pagination} from 'antd';
+import { Input, Modal, Pagination} from 'antd';
 import { Formik } from 'formik';
+
+import SearchIcon from '@material-ui/icons/Search';
+import AdminService from '../../../axios/AdminService';
 
 
 export default class Vouchers extends React.Component {
     
     constructor(props){
         super(props)
-        console.log(this.props)
+        console.log("voucher",this.props)
         this.state={
-            visible:false
+            visible:false,
+            searchtext:null
         }
-
-
     }
 
     showModal = () => {
         this.setState({
-            visible:true
+            visible:true,
+            searchtext:this.state.searchtext
         })
     };
 
     handleCancel = e => {
         console.log("cancled form clicked");
         this.setState({
-            visible:false
+            visible:false,
+            searchtext:this.state.searchtext
         })
     };
 
     onChange(page,pageSize){
-        this.props.handleVoucherPagination(page,pageSize);
+        this.props.handleVoucherPagination(page,pageSize,this.state.searchtext);
+        this.setState({
+            visible:this.state.visible,
+            searchtext:null
+        })
+    }
+
+
+    onSearchTextChanged=(e)=>{
+        this.setState({
+            visible:this.state.visible,
+            searchtext:e.target.value
+        })
+    }
+
+    onSearch=(e)=>{
+        console.log(e.target.value)
+        this.props.handleVoucherPagination(1,20,e.target.value)
     }
 
     render(){
-       // console.log("vouchers page")
-       console.log("Pagination",this.props.voucherPagination)
+       console.log("vouchers page")
+       console.log(this.props)
+       console.log(this.state)
+      // console.log("Pagination",this.props.voucherPagination)
 
         return( 
             <div> 
                 <div className="vouchers-header">
                     <h3>List of Voucher</h3>
-                    <button onClick={this.showModal}>CREATE VOUCHER</button>
+                    <Input prefix={<SearchIcon style={{marginRight:"10px"}}/>} 
+                           placeholder="Search code ,amount, usedby" 
+                           style={{width:'40%',margin:'12px 0 5px 0',
+                           paddingLeft:'10px'}}
+                           value={this.state.searchtext===null?this.props.searchtext:this.state.searchtext}
+                           onChange={this.onSearchTextChanged}
+                           onPressEnter={this.onSearch}/>
+                    <button style={{marginRight:'20px'}} onClick={this.showModal}>CREATE VOUCHER</button>
                 </div>
                 <VouchersListHeader/>
                 <div>
